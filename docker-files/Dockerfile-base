@@ -1,0 +1,51 @@
+
+# 以下は https://github.com/CM2Walki/steamcmd/blob/b8f19872647a7adfbf7afb4bce7e0bfa1153c833/buster/Dockerfile の模倣
+
+ARG IMAGE_VERSION
+
+FROM debian:buster-slim
+
+ARG IMAGE_VERSION
+ARG SERVER_UNAME
+ARG SERVER_UID
+
+##################################
+# 必要なファイルの取得
+##################################
+ENV DEBIAN_FRONTEND noninteractive
+RUN set -x \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
+       lib32stdc++6=8.3.0-6 \
+       lib32gcc1=1:8.3.0-6 \
+       wget=1.20.1-1.1 \
+       ca-certificates=20190110 \
+       unzip \
+       locales \
+       python3 \
+       unrar-free \
+  && apt-get clean autoclean \
+  && apt-get autoremove -y \
+  && rm -rf /var/lib/apt/lists/*
+
+##################################
+# 環境設定
+##################################
+RUN echo "ja_JP.UTF-8 UTF-8" > /etc/locale.gen && \
+    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen && \
+    dpkg-reconfigure locales && \
+    /usr/sbin/update-locale LANG=ja_JP.UTF-8
+ENV LC_ALL ja_JP.UTF-8
+
+##################################
+# ユーザーの作成
+##################################
+RUN useradd -u ${SERVER_UID} -m ${SERVER_UNAME}
+
+USER root
+COPY boot-files/ /tmp/boot-files/
+RUN chown -R ${SERVER_UNAME}:${SERVER_GNAME} /tmp/boot-files/ && \
+    chmod -R +xr /tmp/boot-files/
+
+USER ${SERVER_UNAME}

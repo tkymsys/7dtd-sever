@@ -1,0 +1,18 @@
+
+ARG IMAGE_VERSION
+
+FROM 7dtd-base:${IMAGE_VERSION}
+
+ARG SERVER_UNAME
+ARG SERVER_UID
+ARG SERVER_PASS
+
+USER root
+
+COPY setup-files/ /tmp/setup-files/
+RUN chown -R ${SERVER_UNAME}:${SERVER_GNAME} /tmp/setup-files/ && \
+    chmod -R +xr /tmp/setup-files/
+
+USER ${SERVER_UNAME}
+ENTRYPOINT /tmp/setup-files/entrypoint.sh
+

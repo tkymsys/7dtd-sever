@@ -1,0 +1,17 @@
+
+ARG IMAGE_VERSION
+
+FROM 7dtd-base:${IMAGE_VERSION}
+
+ARG SERVER_UNAME
+ARG SERVER_UID
+ARG SERVER_PASS
+
+USER root
+
+COPY boot-files/ /tmp/boot-files/
+RUN chown -R ${SERVER_UNAME}:${SERVER_GNAME} /tmp/boot-files/ && \
+    chmod -R +xr /tmp/boot-files/
+
+USER ${SERVER_UNAME}
+ENTRYPOINT ["/bin/sh", "-c", "while :; do sleep 10; done"]

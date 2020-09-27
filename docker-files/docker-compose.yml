@@ -1,0 +1,23 @@
+
+version: "3.7"
+
+services:
+  7dtd_setup:
+    container_name: 7dtd_setup
+    env_file: .env
+    image: 7dtd-setup:${IMAGE_VERSION}
+    ports:
+      - "26900:26900/tcp"
+      - "26900-26902:26900-26902/udp"
+    volumes:
+      - ${MOUNT_PATH}:/home/${SERVER_UNAME}
+
+  7dtd_boot:
+    container_name: 7dtd_boot
+    env_file: .env
+    image: 7dtd-boot:${IMAGE_VERSION}
+    ports:
+      - "26900:26900/tcp"
+      - "26900-26902:26900-26902/udp"
+    volumes:
+      - ${MOUNT_PATH}:/home/${SERVER_UNAME}   
