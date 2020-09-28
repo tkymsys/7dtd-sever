@@ -68,7 +68,7 @@
 
 	<!--  -->
 	<property name="BuildCreate"				value="false" />			<!-- cheat mode on/off -->
-	<property name="DayNightLength"				value="40" />				<!-- real time minutes per in game day: 60 minutes -->
+	<property name="DayNightLength"				value="45" />				<!-- real time minutes per in game day: 60 minutes -->
 	<property name="DayLightLength"				value="21" />				<!-- in game hours the sun shines per day: 18 hours day light per in game day -->
 	<property name="DropOnDeath"				value="1" />				<!-- 0 = nothing, 1 = everything, 2 = toolbelt only, 3 = backpack only, 4 = delete all -->
 	<property name="DropOnQuit"				value="0" />				<!-- 0 = nothing, 1 = everything, 2 = toolbelt only, 3 = backpack only -->
