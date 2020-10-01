@@ -7,6 +7,7 @@ services:
     env_file: .env
     image: 7dtd-setup:${IMAGE_VERSION}
     ports:
+      - "8080:8080/tcp"
       - "26900:26900/tcp"
       - "26900-26902:26900-26902/udp"
     environment:
@@ -19,6 +20,7 @@ services:
     env_file: .env
     image: 7dtd-boot:${IMAGE_VERSION}
     ports:
+      - "8080:8080/tcp"
       - "26900:26900/tcp"
       - "26900-26902:26900-26902/udp"
     environment:
