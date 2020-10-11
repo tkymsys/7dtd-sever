@@ -7,9 +7,22 @@ services:
     env_file: .env
     image: 7dtd-setup:${IMAGE_VERSION}
     ports:
-      - "8080:8080/tcp"
-      - "26900:26900/tcp"
-      - "26900-26902:26900-26902/udp"
+      - "${GAME_TCP_PORT}:${GAME_TCP_PORT}/tcp"
+      - "${CONTROL_PANEL_TCP_PORT}:${CONTROL_PANEL_TCP_PORT}/tcp"
+      - "${GAME_UDP_PORT}:${GAME_UDP_PORT}/udp"
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - ${MOUNT_PATH}:/home/${SERVER_UNAME}
+
+  7dtd_update:
+    container_name: 7dtd_update
+    env_file: .env
+    image: 7dtd-update:${IMAGE_VERSION}
+    ports:
+      - "${GAME_TCP_PORT}:${GAME_TCP_PORT}/tcp"
+      - "${CONTROL_PANEL_TCP_PORT}:${CONTROL_PANEL_TCP_PORT}/tcp"
+      - "${GAME_UDP_PORT}:${GAME_UDP_PORT}/udp"
     environment:
       TZ: Asia/Tokyo
     volumes:
@@ -20,9 +33,9 @@ services:
     env_file: .env
     image: 7dtd-boot:${IMAGE_VERSION}
     ports:
-      - "8080:8080/tcp"
-      - "26900:26900/tcp"
-      - "26900-26902:26900-26902/udp"
+      - "${GAME_TCP_PORT}:${GAME_TCP_PORT}/tcp"
+      - "${CONTROL_PANEL_TCP_PORT}:${CONTROL_PANEL_TCP_PORT}/tcp"
+      - "${GAME_UDP_PORT}:${GAME_UDP_PORT}/udp"
     environment:
       TZ: Asia/Tokyo
     volumes:

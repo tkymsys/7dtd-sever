@@ -23,5 +23,6 @@ buildArg=`printBuildArg "${SCRIPT_DIR}/../docker-files/.env"`
 cd ../docker-files > /dev/null
 docker build -t 7dtd-base:${IMAGE_VERSION}  ${buildArg} -f Dockerfile-base  .
 docker build -t 7dtd-setup:${IMAGE_VERSION} ${buildArg} -f Dockerfile-setup .
+docker build -t 7dtd-update:${IMAGE_VERSION} ${buildArg} -f Dockerfile-update .
 docker build -t 7dtd-boot:${IMAGE_VERSION}  ${buildArg} -f Dockerfile-boot  .
 cd - > /dev/null
