@@ -10,6 +10,8 @@ Docker環境上に"7 Days To Die"のサーバーを構築する。
   SERVER_UNAME=${サーバーファイルインストール先ディレクトリのオーナーであるユーザーのユーザー名}
   SERVER_UID=${サーバーファイルインストール先ディレクトリのオーナーであるユーザーのユーザーID}
   MOUNT_PATH=${サーバーファイルインストール先ディレクトリ}
+  GAME_TCP_PORT=serverconfig.xmlのServerPort
+  CONTROL_PANEL_TCP_PORT=serverconfig.xmlのControlPanelPort
 
   例：user：steam（1001）で /home/steam/7dtd にインストールする場合
 
